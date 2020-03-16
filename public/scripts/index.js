@@ -5,3 +5,5 @@
     console.log('user not authenticated')
   }
 })()
+
+console.log(events);
