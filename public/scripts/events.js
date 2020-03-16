@@ -1,7 +1,9 @@
 var divContainer = document.getElementById('default-events')
 
+
 function addModalEvent(event, idx) {
   var newModal = document.createElement('div')
+
 
   newModal.innerHTML = `
   <div class="modal fade" id="modal${idx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -14,7 +16,13 @@ function addModalEvent(event, idx) {
           </button>
         </div>
         <div class="modal-body">
-        </div>
+          ${event.tasks.forEach(task => {
+            var taskp = document.createElement('p')
+            taskp.innerHTML = `${task.name}`
+            var divTask = document.getElementsByClassName('modal-body')
+            divTask.appendChild(taskp)
+          }) }
+          </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">Añadir a mis eventos</button>
         </div>

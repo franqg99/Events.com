@@ -1,123 +1,194 @@
 var events = [
-  {
+  {    
     name: "Baby Shower",
-    img: "baby_shower.jpg",
-    list: [
-      {
-        execution: "6 semanas antes",
-        tasks: {
-          first: "Elegir sitio de celebración",
-          second: "Hacer lista de invitados"
-        }
-      },
-      {
-        execution: "4 semanas antes",
-        tasks: {
-          first: "Elegir temática del evento",
-          second: "Preparar las invitaciones",
-          third: "Decoración",
-          fourth: "Elección de catering",
-          fifth: "Tarta"
-        }
-      },
-      {
-        execution: "3 semanas antes",
-        tasks: {
-          first: "Enviar invitaciones y solicitar confirmación",
-          second: "Planificar juegos"
-        }
-      },
-      {
-        execution: "2 semanas antes",
-        tasks: {
-          first: "Pensar en los premios de los juegos",
-          second: "Escoger detalles para los invitados",
-          third: "Contratar al fotógrafo",
-          fourth: "Contratar DJ"
-        }
-      },
-      {
-        execution: "1 semanas antes",
-        tasks: {
-          first: "Confirmar asistencias",
-          second: "Contratar catering"
-        }
-      },
-      {
-        execution: "3 días antes",
-        tasks: {
-          first: "Planificar distribución de los espacios"
-        }
-      },
-      {
-        execution: "Día del evento",
-        tasks: {
-          first: "Hacer test del COVID-19 a los invitados"
-        }
-      }
-    ]
-  },
-  {
-    name: "Comunión",
-    img: "baby_shower.jpg",
-    list: [
-      {
-        execution: "4 meses antes",
-        tasks: {
-          first: "Elegir sitio de celebración",
-          second: "Hacer lista de invitados",
-          third: "Elegir traje/vestido",
-          fourth: "Contratar al fotógrafo"
-        }
-      },
-      {
-        execution: "2 meses antes",
-        tasks: {
-          first: "Contratar animación",
-          second: "Hacer reportaje fotográfico",
-          third: "Enviar invitaciones"
-        }
-      },
-      {
-        execution: "1 mes antes",
-        tasks: {
-          first: "Confirmar asistencias",
-          second: "Planificar juegos",
-          third: "Elegir decoración",
-          fourth: "Imprimir 'Recuerdo de mi primera comunión'"
-        }
-      },
-      {
-        execution: "3 semanas antes",
-        tasks: {
-          first: "Contratar catering",
-        }
-      },
-      {
-        execution: "3 días antes",
-        tasks: {
-          first: "Planificar distribución de los espacios"
-        }
-      },
-      {
-        execution: "Día del evento",
-        tasks: {
-          first: "Hacer test del COVID-19 a los invitados"
-        }
-      }
-    ]
-  },{
-    name: "Baby Shower",
-    img: "baby_shower.jpg",
-  },{    
-    name: "Hacer el lab",
     img: "baby_shower.jpg",
     tasks: [{
-      name: "Leer el lab",
-      status: false,
+      name: "Elegir sitio de celebración",
+      status: false
     },{
-      name: "Volver a leer el lab",
+      name: "Hacer lista de invitados",
+      status: false
+    },{
+      name: "Elegir temática del evento",
+      status: false
+    },{
+      name: "Preparar las invitaciones",
+      status: false
+    },{
+      name: "Decoración",
+      status: false
+    },{
+      name: "Elección de catering",
+      status: false
+    },{
+      name: "Elección de tarta",
+      status: false
+    },{
+      name: "Enviar invitaciones y solicitar confirmación",
+      status: false
+    },{
+      name: "Planificar juegos",
+      status: false
+    },{
+      name: "Pensar en los premios de los juegos",
+      status: false
+    },{
+      name: "Escoger detalles para los invitados",
+      status: false
+    },{
+      name: "Contratar al fotógrafo",
+      status: false
+    },{
+      name: "Contratar DJ",
+      status: false
+    },{
+      name: "Confirmar asistencias",
+      status: false
+    },{
+      name: "Contratar catering",
+      status: false
+    },{
+      name: "Planificar distribución de los espacios",
+      status: false
+    },{
+      name: "Hacer test del COVID-19 a los invitados",
+      status: false
+    }]
+  },
+  {    
+    name: "Comunión",
+    img: "Primera-comunion.jpg",
+    tasks: [{
+      name: "Elegir sitio de celebración",
+      status: false
+    },{
+      name: "Hacer lista de invitados",
+      status: false
+    },{
+      name: "Elegir traje/vestido",
+      status: false
+    },{
+      name: "Contratar al fotógrafo",
+      status: false
+    },{
+      name: "Contratar animación",
+      status: false
+    },{
+      name: "Hacer reportaje fotográfico",
+      status: false
+    },{
+      name: "Enviar invitaciones",
+      status: false
+    },{
+      name: "Confirmar asistencias",
+      status: false
+    },{
+      name: "Planificar juegos",
+      status: false
+    },{
+      name: "Elegir decoración",
+      status: false
+    },{
+      name: "Imprimir 'Recuerdo de mi primera comunión'",
+      status: false
+    },{
+      name: "Contratar catering",
+      status: false
+    },{
+      name: "Planificar distribución de los espacios",
+      status: false
+    },{
+      name: "Hacer test del COVID-19 a los invitados",
+      status: false
+    }]
+  },
+  {    
+    name: "Boda en la playa",
+    img: "Boda-Playa.jpg",
+    tasks: [{
+      name: "Conseguir una autorización",
+      status: false
+    },{
+      name: "Hacer lista invitados",
+      status: false
+    },{
+      name: "Elegir catering",
+      status: false
+    },{
+      name: "Elegir traje/vestido",
+      status: false
+    },{
+      name: "Contratar al fotógrafo",
+      status: false
+    },{
+      name: "Contratar animación",
+      status: false
+    },{
+      name: "Hacer reportaje fotográfico pre-boda",
+      status: false
+    },{
+      name: "Enviar invitaciones",
+      status: false
+    },{
+      name: "Confirmar asistencias",
+      status: false
+    },{
+      name: "Planificar juegos",
+      status: false
+    },{
+      name: "Elegir decoración",
+      status: false
+    },{
+      name: "Imprimir Libro de firmas",
+      status: false
+    },{
+      name: "Contratar catering",
+      status: false
+    },{
+      name: "Planificar distribución de los espacios",
+      status: false
+    },{
+      name: "Hacer test del COVID-19 a los invitados",
+      status: false
+    }]
+  },
+  {    
+    name: "Cumpleaños",
+    img: "cumpleaños.jpg",
+    tasks: [{
+      name: "Hacer lista de invitados",
+      status: false
+    },{
+      name: "Elegir lugar celebración",
+      status: false
+    },{
+      name: "Elegir catering",
+      status: false
+    },{
+      name: "Elegir temática de la fiesta",
+      status: false
+    },{
+      name: "Contratar animación",
+      status: false
+    },{
+      name: "Enviar invitaciones",
+      status: false
+    },{
+      name: "Confirmar asistencias",
+      status: false
+    },{
+      name: "Planificar juegos",
+      status: false
+    },{
+      name: "Contratar catering",
+      status: false
+    },{
+      name: "Planificar distribución de los espacios",
+      status: false
+    },{
+      name: "Hacer test del COVID-19 a los invitados",
       status: false
     }]
   }
 ]
+  
