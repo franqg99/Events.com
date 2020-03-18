@@ -1,10 +1,15 @@
+const api = axios.create({
+  baseURL: 'http://localhost:8080/api/',
+  timeout: 1000
+})
+
 var divContainer = document.getElementById('default-events')
 
 
 function addModalEvent(event, idx) {
   const divContainer = document.getElementById('default-events')
   var newModal = document.createElement('div')
-  //var addEvent = document.getElementById('addEvent')
+  
 
   newModal.innerHTML = `
   <div class="modal fade" id="modal${idx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -19,28 +24,42 @@ function addModalEvent(event, idx) {
         <div class="modal-body${idx}">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="addEvent">Añadir a mis eventos</button>
+          <button type="button" class="btn btn-primary" id="addEvent${idx}">Añadir a mis eventos</button>
         </div>
       </div>
     </div>
   </div>`
 
-  /*addEvent.addEventListener('click', () => {
-
-  })*/
   divContainer.appendChild(newModal)
+
   addTodosToEvent(event, idx)
+
+  addEventToMyEvents(event, idx)
+}
+
+function addEventToMyEvents(event, idx) {
+  const addEvent = document.getElementById(`addEvent${idx}`)
+  addEvent.addEventListener('click', () => {
+    api.post('events/',
+      { owner: localStorage.getItem('userId'),
+        event
+    })
+      .then(response => {
+        console.log(response);
+        
+    })
+})
 }
 
 function addTodosToEvent(event, idx) {
   const divTasks = document.getElementsByClassName(`modal-body${idx}`)[0]
+  const ol = document.createElement('ol')
   event.tasks.forEach( task => {
-    const ul = document.createElement('ul')
     const li = document.createElement('li')
     li.innerHTML = task.name
-    ul.appendChild(li)
-    divTasks.appendChild(ul)
+    ol.appendChild(li)
   })
+  divTasks.appendChild(ol)
   
 }
 
@@ -59,6 +78,7 @@ events.forEach((event, idx) => {
       <h5 class="card-title">${event.name}</h5>
     </div>
   `
+    
   divContainer.appendChild(newEvent)
   
   addModalEvent(event, idx)

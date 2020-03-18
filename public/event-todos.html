@@ -42,21 +42,12 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-10 offset-1 mt-5">
-
-        <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-eventos-tab" data-toggle="tab" href="#nav-eventos" role="tab" aria-controls="nav-eventos" aria-selected="true">Eventos</a>
-          </div>
-        </nav>
-
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-eventos" role="tabpanel" aria-labelledby="nav-eventos-tab">
-            <div class="row" id="default-events"></div>
-          </div>
-        </div>
-
-
+      <div class="col-12">
+        <h1>"Nombre del evento"</h1>
+        <label for="newTodo">Nueva tarea</label>
+        <input type="text" name="newTodo" id="newTodo">
+        <ul id="todosUL">
+        </ul>
       </div>
     </div>
   </div>
@@ -66,8 +57,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-  <script src="./scripts/data_events.js"></script>
-  <script src="./scripts/events.js"></script>
-  <script src="./scripts/logout.js"></script>
+  <script src="scripts/event-todos.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 </html>

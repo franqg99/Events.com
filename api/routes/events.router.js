@@ -3,8 +3,8 @@ const { authUser } = require('../utils')
 
 const {
   createEvent
-} = require('../controllers/eventos.controller')
+} = require('../controllers/events.controller')
 
-router.post('/', authUser, createEvent)
+router.post('/', createEvent)
 
 module.exports = router
