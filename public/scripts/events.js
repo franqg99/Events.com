@@ -2,7 +2,9 @@ var divContainer = document.getElementById('default-events')
 
 
 function addModalEvent(event, idx) {
+  const divContainer = document.getElementById('default-events')
   var newModal = document.createElement('div')
+  //var addEvent = document.getElementById('addEvent')
 
   newModal.innerHTML = `
   <div class="modal fade" id="modal${idx}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -14,25 +16,35 @@ function addModalEvent(event, idx) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          ${event.tasks.forEach( task => {
-            var divTask = document.getElementsByClassName('modal-body')
-            divTask.appendChild('<p>' + task.name + '</p>')
-            })
-          }
+        <div class="modal-body${idx}">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Añadir a mis eventos</button>
+          <button type="button" class="btn btn-primary" id="addEvent">Añadir a mis eventos</button>
         </div>
       </div>
     </div>
   </div>`
 
-  return newModal
+  /*addEvent.addEventListener('click', () => {
+
+  })*/
+  divContainer.appendChild(newModal)
+  addTodosToEvent(event, idx)
+}
+
+function addTodosToEvent(event, idx) {
+  const divTasks = document.getElementsByClassName(`modal-body${idx}`)[0]
+  event.tasks.forEach( task => {
+    const label = document.createElement('label')
+    label.innerHTML = task.name
+    divTasks.appendChild(label)
+  })
+  
 }
 
 events.forEach((event, idx) => {
-  var newEvent = document.createElement('div')
+  const divContainer = document.getElementById('default-events')
+  const newEvent = document.createElement('div')
   newEvent.setAttribute('class',  'card col-3')
   newEvent.setAttribute('data-toggle',  'modal')
   newEvent.setAttribute('data-target',  `#modal${idx}`)
@@ -45,10 +57,8 @@ events.forEach((event, idx) => {
       <h5 class="card-title">${event.name}</h5>
     </div>
   `
-
-  newEvent.addEventListener('click', () => {
-    divContainer.appendChild(addModalEvent(event, idx))
-  })
-
   divContainer.appendChild(newEvent)
+  
+  addModalEvent(event, idx)
+ 
 });
