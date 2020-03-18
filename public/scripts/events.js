@@ -35,9 +35,11 @@ function addModalEvent(event, idx) {
 function addTodosToEvent(event, idx) {
   const divTasks = document.getElementsByClassName(`modal-body${idx}`)[0]
   event.tasks.forEach( task => {
-    const label = document.createElement('label')
-    label.innerHTML = task.name
-    divTasks.appendChild(label)
+    const ul = document.createElement('ul')
+    const li = document.createElement('li')
+    li.innerHTML = task.name
+    ul.appendChild(li)
+    divTasks.appendChild(ul)
   })
   
 }
