@@ -37,10 +37,6 @@ function addModalEvent (event, idx) {
 function addEventToMyEvents (event, idx) {
   const addEvent = document.getElementById(`addEvent${idx}`)
   addEvent.addEventListener('click', () => {
-    console.log({
-      owner: localStorage.getItem('userId'),
-      event
-    })
     api.post('events/',
       {
         newEvent: {
@@ -48,9 +44,9 @@ function addEventToMyEvents (event, idx) {
           event
         }
       })
-      .then(response => {
-        console.log(response)
-      })
+      .then(() => {
+        location.assign('my-events.html')
+      })  
   })
 }
 

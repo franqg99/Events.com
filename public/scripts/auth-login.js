@@ -20,7 +20,7 @@ document.getElementById('btn-login').addEventListener('click', (event) => {
         localStorage.setItem('name', response.data.username)
         localStorage.setItem('email', response.data.email)
         localStorage.setItem('userId', response.data.userId)
-        location.assign('events.html')
+        location.assign('my-events.html')
       }
     })
     .catch(function (error) {
