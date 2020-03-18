@@ -4,7 +4,6 @@ module.exports = {
   createEvent
 }
 
-
 function createEvent (req, res) {
   EventsModel
     .create(req.body.newEvent)
