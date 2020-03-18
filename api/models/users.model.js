@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  role: {
+  phone: {
+    type: Number,
+    required: true
+  },
+  /*role: {
     type: String,
     enum: ['host', 'regular'],
     required: false,
@@ -29,7 +33,7 @@ const userSchema = new mongoose.Schema({
   birthDate: {
     type: Date,
     required: false
-  },
+  },*/
   createdAt: {
     type: Number,
     default: Date.now() // Get a timestamp :)
