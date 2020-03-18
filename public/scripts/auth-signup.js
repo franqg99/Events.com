@@ -11,7 +11,7 @@ document.getElementById('btn-signup').addEventListener('click', (event) => {
     user_password: document.getElementById('user_password').value,
     user_phone: document.getElementById('user_phone').value
   }
-  
+
   api
     .post('auth/signup', newUser)
     //
@@ -22,22 +22,9 @@ document.getElementById('btn-signup').addEventListener('click', (event) => {
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('name', response.data.username)
       localStorage.setItem('email', response.data.email)
-      location.assign('todos.html')
+      location.assign('events.html')
     })
     .catch(function (error) {
       console.log(error.response)
     })
 })
-
-
-
-// document.getElementById('btn-api').addEventListener('click', (event) => {
-//   api
-//     .get('whoami', { headers: { token: localStorage.getItem('token') } })
-//     .then(function (response) {
-//       console.log(response.data)
-//     })
-//     .catch(function (error) {
-//       console.log(error.response)
-//     })
-// })
