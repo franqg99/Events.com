@@ -14,7 +14,7 @@ function signup (req, res) {
     name: req.body.user_name,
     email: req.body.user_email,
     password: hashedPwd,
-    phone : req.body.user_phone
+    phone: req.body.user_phone
   }
 
   UserModel
