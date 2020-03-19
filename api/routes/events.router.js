@@ -3,10 +3,12 @@ const { authUser } = require('../utils')
 
 const {
   createEvent,
-  showEvent
+  showEvent,
+  updateTaskStatus
 } = require('../controllers/events.controller')
 
 router.post('/', createEvent)
 router.get('/:userId', showEvent)
+router.patch('/:userId', updateTaskStatus)
 
 module.exports = router
