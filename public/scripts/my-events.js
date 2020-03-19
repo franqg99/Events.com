@@ -10,9 +10,9 @@ function getEvent (event, idx) {
   newEvent.setAttribute('class', 'card col-3')
   newEvent.style.width = '18rem'
   newEvent.innerHTML = `
-    <img src='./img/${event.event.img}' class='card-img-top' alt='...'>
+    <img src='./img/${event.img}' class='card-img-top' alt='...'>
     <div class='card-body'>
-      <h5 class='card-title'>${event.event.name}</h5>
+      <h5 class='card-title'>${event.name}</h5>
     </div>
     `
 
@@ -23,10 +23,17 @@ function getEvent (event, idx) {
 }
 
 function updateTaskStatus (event, idx) {
-  console.log(event)
-  api.put(`events/${event._id}/${idx}`, { status: true }, { headers: { token: localStorage.getItem('token') }, new: true })
-    .then(response => {
-      console.log(response)
+  console.log('Cambio de estado')
+  api.put(`events/${event._id}/tasks/${event.tasks[idx]._id}`,
+    { status: !event.tasks[idx].status },
+    { headers: { token: localStorage.getItem('token') } })
+    .then(() => {
+      console.log('me he cambiado')
+      if (event.tasks[idx].status) {
+        document.getElementById(event.tasks[idx]._id).innerText = false
+      } else {
+        document.getElementById(event.tasks[idx]._id).innerText = true
+      }
     })
     .catch(err => console.log(err))
 }
@@ -34,7 +41,7 @@ function updateTaskStatus (event, idx) {
 function getTasksEvent (event) {
   var TODODiv = document.getElementById('my-todos')
   var h2 = document.createElement('h2')
-  h2.innerHTML = `${event.event.name}`
+  h2.innerHTML = `${event.name}`
 
   TODODiv.innerHTML = ''
   var table = document.createElement('table')
@@ -54,11 +61,18 @@ function getTasksEvent (event) {
 
   var content = document.createElement('tbody')
 
-  event.event.tasks.forEach((task, idx) => {
+  event.tasks.forEach((task, idx) => {
     var TODOTr = document.createElement('tr')
-    TODOTr.innerHTML = `
-        <td> ${task.name} </td>
-        <td> ${task.status} </td>`
+
+    const tdName = document.createElement('td')
+    tdName.innerText = task.name
+    TODOTr.appendChild(tdName)
+
+    const tdStatus = document.createElement('td')
+    tdStatus.setAttribute('id', task._id)
+    tdStatus.innerText = task.status
+    TODOTr.appendChild(tdStatus)
+
     var updateButton = document.createElement('input')
     updateButton.setAttribute('type', 'button')
     updateButton.setAttribute('value', 'Update')

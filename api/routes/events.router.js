@@ -8,6 +8,6 @@ const {
 
 router.post('/', createEvent)
 router.get('/:userId', showEvent)
-router.put('/:eventId/:taskIdx', updateTaskStatus)
+router.put('/:eventId/tasks/:taskId', updateTaskStatus)
 
 module.exports = router

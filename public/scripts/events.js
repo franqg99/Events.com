@@ -41,12 +41,12 @@ function addEventToMyEvents (event, idx) {
       {
         newEvent: {
           owner: localStorage.getItem('userId'),
-          event
+          ...event
         }
       }, { headers: { token: localStorage.getItem('token') } })
       .then(() => {
         location.assign('my-events.html')
-      })  
+      })
   })
 }
 
