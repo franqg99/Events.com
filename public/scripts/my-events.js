@@ -23,17 +23,12 @@ function getEvent (event, idx) {
   divContainer.appendChild(newEvent)
 }
 
-function updateTaskStatus(event) {
-  api.patch(`events/${localStorage.getItem('userId')}/`, {status: true})
-  .then(response => {  
-    console.log(response.data);
-    response.data.forEach((event) => { 
-      event.event.tasks.forEach(task => {
-        if (task.status == false) {
-          return task.status = true
-        }
-      })
-    })
+function updateTaskStatus(event, idx) {
+  console.log(event)
+  api.put(`events/${event._id}/${idx}`, {status: true}, { headers: { token: localStorage.getItem('token') } })
+  .then(response => {
+    console.log(response)  
+    
   })
   .catch(err => console.log(err))
 }
@@ -73,7 +68,7 @@ function getTasksEvent(event) {
     updateButton.classList.add('btn');
     updateButton.classList.add('btn-success');
     updateButton.onclick = function () {
-      updateTaskStatus(event)
+      updateTaskStatus(event, idx)
     }
     var td = document.createElement('td')
     td.appendChild(updateButton)
@@ -98,7 +93,7 @@ function getTasksEvent(event) {
 }
  
   
-api.get(`events/${localStorage.getItem('userId')}`)
+api.get(`events/${localStorage.getItem('userId')}`, { headers: { token: localStorage.getItem('token') } })
   .then(response => {
     response.data.forEach((event, idx) => { 
       getEvent(event, idx)

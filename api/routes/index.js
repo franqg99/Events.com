@@ -6,10 +6,10 @@ const todosRouter = require('./todos.router')
 const eventsRouter = require('./events.router')
 const { authUser } = require('../utils') // Authenticated Route
 
-router.use('/users', usersRouter)
 router.use('/auth', authRouter)
-router.use('/todos', todosRouter)
-router.use('/events', eventsRouter)
+router.use('/users', authUser, usersRouter)
+router.use('/todos', authUser, todosRouter)
+router.use('/events', authUser, eventsRouter)
 
 router.get('/whoami', authUser, (req, res) => {
   res.send(`hi there! ${res.locals.user.name}`)
