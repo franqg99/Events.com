@@ -16,6 +16,7 @@ document.getElementById('btn-login').addEventListener('click', (event) => {
       if (response.data.error) {
         alert('WRONG PASSWORD')
       } else {
+        localStorage.clear()
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('name', response.data.username)
         localStorage.setItem('email', response.data.email)

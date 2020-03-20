@@ -46,24 +46,25 @@ function updateTaskStatus (event, idx) {
     { status: !event.tasks[idx].status },
     { headers: { token: localStorage.getItem('token') } })
     .then(() => {
-       if (event.tasks[idx].status) {
-         document.getElementById(event.tasks[idx]._id).innerText = 'No hecho'
-        } else {
-         document.getElementById(event.tasks[idx]._id).innerText = 'Hecho'
-       } 
+      if (event.tasks[idx].status) {
+        document.getElementById(event.tasks[idx]._id).innerText = 'No hecho'
+      } else {
+        document.getElementById(event.tasks[idx]._id).innerText = 'Hecho'
+      }
     })
     .catch(err => console.log(err))
 }
 
-// function deleteTask (event, idx) {
-//   api.delete(`events/${event._id}/tasks/${event.tasks[idx]._id}`)
-//     //console.log(`events/${event._id}/tasks/${event.tasks[idx]._id}`)
-//     .then(response => response.data)
-//     .catch(err => console.log(err))
-// }
+function deleteTask (e, event, idx) {
+  api.delete(`events/${event._id}/tasks/${event.tasks[idx]._id}`,
+    { headers: { token: localStorage.getItem('token') } })
+    .then(() => {
+      document.getElementById(event.tasks[idx]._id + 'TR').remove()
+    })
+    .catch(err => console.log(err))
+}
 
 function getTasksEvent (event) {
-
   var TODODiv = document.getElementById('my-todos')
   var h2 = document.createElement('h2')
   h2.innerHTML = `${event.name}`
@@ -88,6 +89,7 @@ function getTasksEvent (event) {
 
   event.tasks.forEach((task, idx) => {
     var TODOTr = document.createElement('tr')
+    TODOTr.setAttribute('id', task._id + 'TR')
 
     const tdName = document.createElement('td')
     tdName.innerText = task.name
@@ -114,8 +116,8 @@ function getTasksEvent (event) {
     deleteButton.setAttribute('value', 'Delete')
     deleteButton.classList.add('btn')
     deleteButton.classList.add('btn-danger')
-    deleteButton.onclick = function () {
-      deleteTask(event, idx)
+    deleteButton.onclick = function (e) {
+      deleteTask(e, event, idx)
     }
     var td2 = document.createElement('td')
     td2.appendChild(deleteButton)
