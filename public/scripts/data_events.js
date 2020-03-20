@@ -4,55 +4,55 @@ var events = [
     img: "baby_shower.jpg",
     tasks: [{
       name: "Elegir sitio de celebración",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer lista de invitados",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir temática del evento",
-      status: "No hecho"
+      status: false
     },{
       name: "Preparar las invitaciones",
-      status: "No hecho"
+      status: false
     },{
       name: "Decoración",
-      status: "No hecho"
+      status: false
     },{
       name: "Elección de catering",
-      status: "No hecho"
+      status: false
     },{
       name: "Elección de tarta",
-      status: "No hecho"
+      status: false
     },{
       name: "Enviar invitaciones y solicitar confirmación",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar juegos",
-      status: "No hecho"
+      status: false
     },{
       name: "Pensar en los premios de los juegos",
-      status: "No hecho"
+      status: false
     },{
       name: "Escoger detalles para los invitados",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar al fotógrafo",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar DJ",
-      status: "No hecho"
+      status: false
     },{
       name: "Confirmar asistencias",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar catering",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar distribución de los espacios",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer test del COVID-19 a los invitados",
-      status: "No hecho"
+      status: false
     }]
   },
   {    
@@ -60,46 +60,46 @@ var events = [
     img: "Primera-comunion.jpg",
     tasks: [{
       name: "Elegir sitio de celebración",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer lista de invitados",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir traje/vestido",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar al fotógrafo",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar animación",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer reportaje fotográfico",
-      status: "No hecho"
+      status: false
     },{
       name: "Enviar invitaciones",
-      status: "No hecho"
+      status: false
     },{
       name: "Confirmar asistencias",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar juegos",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir decoración",
-      status: "No hecho"
+      status: false
     },{
       name: "Imprimir 'Recuerdo de mi primera comunión'",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar catering",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar distribución de los espacios",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer test del COVID-19 a los invitados",
-      status: "No hecho"
+      status: false
     }]
   },
   {    
@@ -107,49 +107,49 @@ var events = [
     img: "Boda-Playa.jpg",
     tasks: [{
       name: "Conseguir una autorización",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer lista invitados",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir catering",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir traje/vestido",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar al fotógrafo",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar animación",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer reportaje fotográfico pre-boda",
-      status: "No hecho"
+      status: false
     },{
       name: "Enviar invitaciones",
-      status: "No hecho"
+      status: false
     },{
       name: "Confirmar asistencias",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar juegos",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir decoración",
-      status: "No hecho"
+      status: false
     },{
       name: "Imprimir Libro de firmas",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar catering",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar distribución de los espacios",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer test del COVID-19 a los invitados",
-      status: "No hecho"
+      status: false
     }]
   },
   {    
@@ -157,37 +157,37 @@ var events = [
     img: "cumpleaños.jpg",
     tasks: [{
       name: "Hacer lista de invitados",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir lugar celebración",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir catering",
-      status: "No hecho"
+      status: false
     },{
       name: "Elegir temática de la fiesta",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar animación",
-      status: "No hecho"
+      status: false
     },{
       name: "Enviar invitaciones",
-      status: "No hecho"
+      status: false
     },{
       name: "Confirmar asistencias",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar juegos",
-      status: "No hecho"
+      status: false
     },{
       name: "Contratar catering",
-      status: "No hecho"
+      status: false
     },{
       name: "Planificar distribución de los espacios",
-      status: "No hecho"
+      status: false
     },{
       name: "Hacer test del COVID-19 a los invitados",
-      status: "No hecho"
+      status: false
     }]
   }
 ]

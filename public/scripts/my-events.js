@@ -46,17 +46,11 @@ function updateTaskStatus (event, idx) {
     { status: !event.tasks[idx].status },
     { headers: { token: localStorage.getItem('token') } })
     .then(() => {
-      console.log('me he cambiado')
-      if (event.tasks[idx].status === "No Hecho") {
-        document.getElementById(event.tasks[idx]._id).innerHTML = "Hecho"
-      } else {
-        document.getElementById(event.tasks[idx]._id).innerHTML = "No hecho"
-      }
-      // if (event.tasks[idx].status) {
-      //   document.getElementById(event.tasks[idx]._id).innerText = false
-      // } else {
-      //   document.getElementById(event.tasks[idx]._id).innerText = true
-      // } 
+       if (event.tasks[idx].status) {
+         document.getElementById(event.tasks[idx]._id).innerText = 'No hecho'
+        } else {
+         document.getElementById(event.tasks[idx]._id).innerText = 'Hecho'
+       } 
     })
     .catch(err => console.log(err))
 }
@@ -101,7 +95,7 @@ function getTasksEvent (event) {
 
     const tdStatus = document.createElement('td')
     tdStatus.setAttribute('id', task._id)
-    tdStatus.innerText = task.status
+    tdStatus.innerText = task.status ? 'Hecho' : 'No hecho'
     TODOTr.appendChild(tdStatus)
 
     var updateButton = document.createElement('input')
