@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const TaskSchema = new mongoose.Schema({
   name: String,
-  status: Boolean
+  status: { type: Boolean, default: false}  
 })
 
 const eventsSchema = new mongoose.Schema({

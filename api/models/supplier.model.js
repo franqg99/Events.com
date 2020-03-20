@@ -14,7 +14,6 @@ const supplierSchema = new mongoose.Schema({
         return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value)
       }
     },
-    // TODO: Make sure unique index works from Mongoose
     unique: [true, 'This is email is registered']
   },
   password: {
@@ -38,10 +37,9 @@ const supplierSchema = new mongoose.Schema({
     required: true
   },
   comments : [commentSchema],
-
   createdAt: {
     type: Number,
-    default: Date.now() // Get a timestamp :)
+    default: Date.now()
   }
 })
 
