@@ -1,3 +1,8 @@
 #form-container {
   background-color: grey;
 }
+
+.tableColor {
+  background-color: #F2B9AE;
+  border-radius: 25px;
+}

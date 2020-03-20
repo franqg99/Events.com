@@ -3,7 +3,9 @@ const { handleError } = require('../utils')
 module.exports = {
   createEvent,
   showEvent,
-  updateTaskStatus
+  updateTaskStatus,
+  //deleteTask,
+  //addTask
 }
 
 function createEvent (req, res) {
@@ -28,3 +30,17 @@ function updateTaskStatus (req, res) {
     .then(response => res.json(response))
     .catch((err) => handleError(err, res))
 }
+
+// function deleteTask (req, res) {
+//   EventsModel
+//     .remove({ _id: req.params.eventId, 'tasks._id': req.params.taskId })
+//     .then(response => res.json(response))
+//     .catch((err) => handleError(err, res))
+// }
+
+// function addTask (req, res) {
+//   EventsModel
+//     .create({ _id: req.params.eventId, tasks: req.body.task })
+//     .then(response => res.json(response))
+//     .catch((err) => handleError(err, res))
+// }

@@ -4,6 +4,24 @@ const api = axios.create({
   timeout: 1000
 })
 
+// document.getElementById('addTask').addEventListener('keydown', (e) => {
+//   if (e.code === 'Enter') {
+//     api.post(`events/${event._id}/tasks`,
+//       { todo: document.getElementById('addTask').value },
+//       { headers: { token: localStorage.getItem('token') } }).then(response => {
+//       addTaskToList(document.getElementById('addTask').value)
+//       document.getElementById('addTask').value = ''
+//     })
+//   }
+// })
+
+// function addTaskToList (todo) {
+//   var TODODiv = document.getElementById('my-todos')
+//   const todoLI = document.createElement('li')
+//   todoLI.innerHTML = `<input type="checkbox"> ${todo}`
+//   todosUL.appendChild(todoLI)
+// }
+
 function getEvent (event, idx) {
   const divContainer = document.getElementById('my-events')
   const newEvent = document.createElement('div')
@@ -29,16 +47,29 @@ function updateTaskStatus (event, idx) {
     { headers: { token: localStorage.getItem('token') } })
     .then(() => {
       console.log('me he cambiado')
-      if (event.tasks[idx].status) {
-        document.getElementById(event.tasks[idx]._id).innerText = false
+      if (event.tasks[idx].status === "No Hecho") {
+        document.getElementById(event.tasks[idx]._id).innerHTML = "Hecho"
       } else {
-        document.getElementById(event.tasks[idx]._id).innerText = true
+        document.getElementById(event.tasks[idx]._id).innerHTML = "No hecho"
       }
+      // if (event.tasks[idx].status) {
+      //   document.getElementById(event.tasks[idx]._id).innerText = false
+      // } else {
+      //   document.getElementById(event.tasks[idx]._id).innerText = true
+      // } 
     })
     .catch(err => console.log(err))
 }
 
+// function deleteTask (event, idx) {
+//   api.delete(`events/${event._id}/tasks/${event.tasks[idx]._id}`)
+//     //console.log(`events/${event._id}/tasks/${event.tasks[idx]._id}`)
+//     .then(response => response.data)
+//     .catch(err => console.log(err))
+// }
+
 function getTasksEvent (event) {
+
   var TODODiv = document.getElementById('my-todos')
   var h2 = document.createElement('h2')
   h2.innerHTML = `${event.name}`
@@ -47,15 +78,15 @@ function getTasksEvent (event) {
   var table = document.createElement('table')
 
   table.classList.add('table')
-  table.classList.add('table-dark')
+  table.classList.add('tableColor')
 
   var headers = document.createElement('thead')
   headers.innerHTML = `
     <tr>
-      <th scope='col'> Task </th>
-      <th scope='col'> Status </th>
-      <th scope='col'> Is done? </th>
-      <th scope='col'> Wanna remove? </th>
+      <th scope='col'> Tarea </th>
+      <th scope='col'> Estado </th>
+      <th scope='col'> Actualizar </th>
+      <th scope='col'> Eliminar </th>
     </tr>`
   table.appendChild(headers)
 
@@ -90,7 +121,7 @@ function getTasksEvent (event) {
     deleteButton.classList.add('btn')
     deleteButton.classList.add('btn-danger')
     deleteButton.onclick = function () {
-      deleteTask(TODOElement.id)
+      deleteTask(event, idx)
     }
     var td2 = document.createElement('td')
     td2.appendChild(deleteButton)
