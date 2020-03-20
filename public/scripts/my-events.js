@@ -4,7 +4,14 @@ const api = axios.create({
   timeout: 1000
 })
 
-function getEvent (event, idx) {
+api.get(`events/${localStorage.getItem('userId')}`, { headers: { token: localStorage.getItem('token') } })
+  .then(response => {
+    response.data.forEach((event, idx) => {
+      getEvent(event)
+    })
+  })
+
+function getEvent (event) {
   const divContainer = document.getElementById('my-events')
   const newEvent = document.createElement('div')
   newEvent.setAttribute('class', 'card col-3')
@@ -23,7 +30,6 @@ function getEvent (event, idx) {
 }
 
 function updateTaskStatus (event, idx) {
-  console.log('Cambio de estado')
   api.put(`events/${event._id}/tasks/${event.tasks[idx]._id}`,
     { status: !event.tasks[idx].status },
     { headers: { token: localStorage.getItem('token') } })
@@ -67,56 +73,63 @@ function getTasksEvent (event) {
     </tr>`
   table.appendChild(headers)
 
-  
-  var content = document.createElement('tbody')
-  content.setAttribute('id', 'tablebody')
-  
-  function addTaskToTable () {
-    event.tasks.forEach((task, idx) => {
-      var TODOTr = document.createElement('tr')
-      TODOTr.setAttribute('id', task._id + 'TR')
+  var body = document.createElement('tbody')
+  body.setAttribute('id', 'tablebody')
 
-      const tdName = document.createElement('td')
-      tdName.innerText = task.name
-      TODOTr.appendChild(tdName)
+  event.tasks.forEach((task, idx) => {
+    const taskTR = generateTaskTR(event, task, idx)
+    body.appendChild(taskTR)
+  })
 
-      const tdStatus = document.createElement('td')
-      tdStatus.setAttribute('id', task._id)
-      tdStatus.innerText = task.status ? 'Hecho' : 'No hecho'
-      TODOTr.appendChild(tdStatus)
+  table.appendChild(body)
 
-      var updateButton = document.createElement('input')
-      updateButton.setAttribute('type', 'button')
-      updateButton.setAttribute('value', 'Update')
-      updateButton.classList.add('btn')
-      updateButton.classList.add('btn-success')
-      updateButton.onclick = function () {
-        updateTaskStatus(event, idx)
-      }
-      var td = document.createElement('td')
-      td.appendChild(updateButton)
-      TODOTr.appendChild(td)
-      var deleteButton = document.createElement('input')
-      deleteButton.setAttribute('type', 'button')
-      deleteButton.setAttribute('value', 'Delete')
-      deleteButton.classList.add('btn')
-      deleteButton.classList.add('btn-danger')
-      deleteButton.onclick = function (e) {
-        deleteTask(e, event, idx)
-      }
-      var td2 = document.createElement('td')
-      td2.appendChild(deleteButton)
-      TODOTr.appendChild(td2)
-      content.appendChild(TODOTr)
-    })
+  const divAddTask = createinputNewTask(event)
 
-    table.appendChild(content)
-    TODODiv.appendChild(h2)
-    TODODiv.appendChild(table)
+  TODODiv.appendChild(h2)
+  TODODiv.appendChild(table)
+  TODODiv.appendChild(divAddTask)
+}
+
+function generateTaskTR (event, task, idx) {
+  var TODOTr = document.createElement('tr')
+  TODOTr.setAttribute('id', task._id + 'TR')
+
+  const tdName = document.createElement('td')
+  tdName.innerText = task.name
+  TODOTr.appendChild(tdName)
+
+  const tdStatus = document.createElement('td')
+  tdStatus.setAttribute('id', task._id)
+  tdStatus.innerText = task.status ? 'Hecho' : 'No hecho'
+  TODOTr.appendChild(tdStatus)
+
+  var updateButton = document.createElement('input')
+  updateButton.setAttribute('type', 'button')
+  updateButton.setAttribute('value', 'Update')
+  updateButton.classList.add('btn')
+  updateButton.classList.add('btn-success')
+  updateButton.onclick = function () {
+    updateTaskStatus(event, idx)
   }
-  
-  addTaskToTable (event)
+  var td = document.createElement('td')
+  td.appendChild(updateButton)
+  TODOTr.appendChild(td)
+  var deleteButton = document.createElement('input')
+  deleteButton.setAttribute('type', 'button')
+  deleteButton.setAttribute('value', 'Delete')
+  deleteButton.classList.add('btn')
+  deleteButton.classList.add('btn-danger')
+  deleteButton.onclick = function (e) {
+    deleteTask(e, event, idx)
+  }
+  var td2 = document.createElement('td')
+  td2.appendChild(deleteButton)
+  TODOTr.appendChild(td2)
 
+  return TODOTr
+}
+
+function createinputNewTask (event) {
   const divAddTask = document.createElement('div')
   const labelTask = document.createElement('label')
   const inputTask = document.createElement('input')
@@ -125,33 +138,28 @@ function getTasksEvent (event) {
   divAddTask.classList.add('col-10')
   divAddTask.classList.add('offset-1')
   divAddTask.classList.add('mt-2')
-  inputTask.setAttribute('id', 'inputtask')
+
+  inputTask.setAttribute('id', 'inputTask')
   inputTask.classList.add('form-control')
   inputTask.setAttribute('type', 'text')
-  labelTask.setAttribute('for', 'inputtask')
+  labelTask.setAttribute('for', 'inputTask')
 
   labelTask.innerText = 'Añadir tarea'
 
-  divAddTask.appendChild(labelTask)
-  divAddTask.appendChild(inputTask)
-  TODODiv.appendChild(divAddTask)
-
-  document.getElementById('inputtask').addEventListener('keydown', (e) => {
-    if (e.code === 'Enter') {
+  inputTask.addEventListener('keypress', (e) => {
+    const newTaskInput = inputTask.value
+    if (e.code === 'Enter' && newTaskInput.length !== 0) {
       api.post(`events/${event._id}/tasks`,
-        { newTask: document.getElementById('inputtask').value },
+        { newTask: { name: newTaskInput, status: false } },
         { headers: { token: localStorage.getItem('token') } })
         .then(response => {
-        addTaskToTable(document.getElementById('inputtask').value)
-        document.getElementById('inputtask').value = ''
-        })   
+          getTasksEvent(response.data)
+        })
     }
   })
-}
 
-api.get(`events/${localStorage.getItem('userId')}`, { headers: { token: localStorage.getItem('token') } })
-  .then(response => {
-    response.data.forEach((event, idx) => {
-      getEvent(event, idx)
-    })
-  })
+  divAddTask.appendChild(labelTask)
+  divAddTask.appendChild(inputTask)
+
+  return divAddTask
+}

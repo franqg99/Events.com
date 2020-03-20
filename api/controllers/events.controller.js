@@ -46,8 +46,12 @@ function deleteTask (req, res) {
 function addTask (req, res) {
   EventsModel
     .findById(req.params.eventId)
-    // { _id: req.params.eventId, { task: req.body.newTask }
-    .then(event => event.tasks.create({ task: req.body.newTask }) )
-      .then(response => res.json(response))
+    .then(event => {
+      if (event.length === 0) return res.json('Event not found')
+      event.tasks.push(req.body.newTask)
+      event.save()
+        .then(response => res.json(response))
+        .catch(err => handleError(err, res))
+    })
     .catch(err => handleError(err, res))
 }
