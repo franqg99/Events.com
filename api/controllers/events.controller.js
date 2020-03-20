@@ -4,8 +4,8 @@ module.exports = {
   createEvent,
   showEvent,
   updateTaskStatus,
-  deleteTask
-  // addTask
+  deleteTask,
+  addTask
 }
 
 function createEvent (req, res) {
@@ -43,9 +43,13 @@ function deleteTask (req, res) {
     .catch((err) => handleError(err, res))
 }
 
-// function addTask (req, res) {
-//   EventsModel
-//     .create({ _id: req.params.eventId, tasks: req.body.task })
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
-// }
+function addTask (req, res) {
+  EventsModel
+    .findById(req.params.eventId)
+    .then(event => {
+      req.body.newTask.create()
+        .then(response => res.json(response))
+        .catch((err) => handleError(err, res))
+    })
+   
+}

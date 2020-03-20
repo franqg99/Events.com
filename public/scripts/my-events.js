@@ -4,24 +4,6 @@ const api = axios.create({
   timeout: 1000
 })
 
-// document.getElementById('addTask').addEventListener('keydown', (e) => {
-//   if (e.code === 'Enter') {
-//     api.post(`events/${event._id}/tasks`,
-//       { todo: document.getElementById('addTask').value },
-//       { headers: { token: localStorage.getItem('token') } }).then(response => {
-//       addTaskToList(document.getElementById('addTask').value)
-//       document.getElementById('addTask').value = ''
-//     })
-//   }
-// })
-
-// function addTaskToList (todo) {
-//   var TODODiv = document.getElementById('my-todos')
-//   const todoLI = document.createElement('li')
-//   todoLI.innerHTML = `<input type="checkbox"> ${todo}`
-//   todosUL.appendChild(todoLI)
-// }
-
 function getEvent (event, idx) {
   const divContainer = document.getElementById('my-events')
   const newEvent = document.createElement('div')
@@ -86,6 +68,7 @@ function getTasksEvent (event) {
   table.appendChild(headers)
 
   var content = document.createElement('tbody')
+  content.setAttribute('id', 'tablebody')
 
   event.tasks.forEach((task, idx) => {
     var TODOTr = document.createElement('tr')
@@ -125,10 +108,82 @@ function getTasksEvent (event) {
     content.appendChild(TODOTr)
   })
 
+  const divAddTask = document.createElement('div')
+  const labelTask = document.createElement('label')
+  const inputTask = document.createElement('input')
+
+  divAddTask.setAttribute('id', 'addtask')
+  divAddTask.classList.add('col-10')
+  divAddTask.classList.add('offset-1')
+  divAddTask.classList.add('mt-2')
+  inputTask.setAttribute('id', 'inputtask')
+  inputTask.classList.add('form-control')
+  inputTask.setAttribute('type', 'text')
+  labelTask.setAttribute('for', 'inputtask')
+
+  labelTask.innerText = 'Añadir tarea'
+
+  divAddTask.appendChild(labelTask)
+  divAddTask.appendChild(inputTask)
+  
+
   table.appendChild(content)
   TODODiv.appendChild(h2)
   TODODiv.appendChild(table)
+  TODODiv.appendChild(divAddTask)
+  
+  document.getElementById('inputtask').addEventListener('keydown', (e) => {
+    if (e.code === 'Enter') {
+      api.post(`events/${event._id}/tasks`,
+        { task: document.getElementById('inputtask').value },
+        { headers: { token: localStorage.getItem('token') } })
+          .then(response => {
+          addTaskToTable(document.getElementById('inputtask').value)
+          document.getElementById('inputtask').value = ''
+          })
+    }
+  })
 }
+
+function addTaskToTable (task) {
+  var fatherNewTask = document.getElementById('tablebody')
+ 
+  var rowNewTask = document.createElement('tr')
+  rowNewTask.setAttribute('id', task._id + 'TR')
+ 
+  const nameNewTask = document.createElement('td')
+  nameNewTask.innerText = task
+  fatherNewTask.appendChild(nameNewTask)
+ 
+  const statusNewTask = document.createElement('td')
+  statusNewTask.setAttribute('id', task._id)
+  statusNewTask.innerText = task.status ? 'Hecho' : 'No hecho'
+  fatherNewTask.appendChild(tdStatus)
+ 
+  var updateButton = document.createElement('input')
+     updateButton.setAttribute('type', 'button')
+     updateButton.setAttribute('value', 'Update')
+     updateButton.classList.add('btn')
+     updateButton.classList.add('btn-success')
+     updateButton.onclick = function () {
+       updateTaskStatus(event, idx)
+     }
+     var td = document.createElement('td')
+     td.appendChild(updateButton)
+     TODOTr.appendChild(td)
+     var deleteButton = document.createElement('input')
+     deleteButton.setAttribute('type', 'button')
+     deleteButton.setAttribute('value', 'Delete')
+     deleteButton.classList.add('btn')
+     deleteButton.classList.add('btn-danger')
+     deleteButton.onclick = function (e) {
+       deleteTask(e, event, idx)
+     }
+     var td2 = document.createElement('td')
+     td2.appendChild(deleteButton)
+     fatherNewTask.appendChild(td2)
+   
+ }
 
 api.get(`events/${localStorage.getItem('userId')}`, { headers: { token: localStorage.getItem('token') } })
   .then(response => {
